@@ -5,14 +5,13 @@
     </div>
     <div class="gnb">
       <ul id="gnb-container">
-        <li v-for="(item, index) in this.items" :key=index class="has_d2" :class="{on: item.click}" :ref="`li${index}`"
-             @mouseover="listMouseOver(index)" @mouseleave="listMouseLeave(index)" @click="listClick(index)">
+        <li v-for="(item, index) in this.items" :key=index class="has_d2" :class="{on: item.click}" @click="listClick(index)">
           <a>
             <span>{{item.title}}</span>
             <span class="small">{{item.subTitle}}</span>
           </a>
 
-          <div class="depth2_bx" :ref="`div${index}`" >
+          <div class="depth2_bx" >
             <a class=" " v-for="(option, index) in item.options" :key=index>{{option}}</a>
           </div>
         </li>
@@ -35,8 +34,8 @@
     </div>
   </div>
 
-  <div class="bot" v-for="(item, index) in this.items" :key="index" :ref="`bot${index}`">
-    <a class=" " v-for="(option, index) in item.options" :key="index" :ref="`bot_span${index}`">
+  <div class="bot" v-for="(item, index) in this.items" :key="index" v-show="item.click" style="text-align:left;">
+    <a class="" :class="{on: i==item.optionsClick}" v-for="(option, i) in item.options" :key="i" @click="optionsClick(index, i)">
       <span>{{option}}</span>
     </a>
   </div>
@@ -47,7 +46,6 @@ export default {
   props:['items',],
   data() {
     return {
-      // isHover:false,
     }
   },
 
@@ -60,27 +58,19 @@ export default {
   },
 
   methods : {
-    listMouseOver(i) {
-      const liObj = this.$refs[`li${i}`]
-      const divObj = this.$refs[`div${i}`]
-      liObj.style.color = '#fA880B'
-      divObj.style.display = 'grid'
-      // this.isHover = !this.isHover
+
+    listClick(i) {
+      for(let j in this.$props.items) {
+        if(j != i) {
+          this.$props.items[j].click = false
+        }
+      }
+      this.$props.items[i].click = true
     },
-    listMouseLeave(i) {
-      const liObj = this.$refs[`li${i}`]
-      const divObj = this.$refs[`div${i}`]
-      liObj.style.color = 'black'
-      divObj.style.display = 'none'
+
+    optionsClick(itemIndex, optionIndex) {
+      this.$props.items[itemIndex].optionsClick = optionIndex
     },
-    // listClick(i) {
-    //   const botObj = this.$refs[`bot${i}`]
-      
-    //   for(let j in this.items) {
-    //     this.$refs[`bot${j}`].style.display = 'none'
-    //   }
-    //   botObj.style.display = 'contents'
-    // }
   }
 
 
@@ -108,12 +98,11 @@ export default {
   object-fit: contain;
 }
 
-
 .gnb {
   float: left;
   position: relative;
   z-index: 1000;
-  top: -10px;
+  top: -18px;
   left: -25px;
 }
 
@@ -135,6 +124,17 @@ ol, ul {
   padding: 19px 15px 17px;
 }
 
+.gnb > ul > li > a span {
+  display: block;
+  font-size: 17px;
+  color: rgb(34, 34, 34);
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.53;
+  letter-spacing: normal;
+}
+
 .gnb span {
   font-weight: bold;
 }
@@ -145,16 +145,42 @@ ol, ul {
   font-weight: normal;
 }
 
-.has_d2.on {
-  color:red;
+.gnb > ul > li.on span, .gnb > ul > li:hover span {
+    color: rgb(250, 136, 11);
+}
+
+.gnb > ul > li:hover .depth2_bx {
+    visibility: visible;
+    opacity: 1;
+}
+
+.gnb > ul > li .depth2_bx {
+    margin-top: 1px;
+    left: 0px;
 }
 
 .depth2_bx {
-  width: 200px;
-  background-color: #fff;
-  display: none;
-  color: black;
-  position: absolute;
+    width: 179px;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 101;
+    position: absolute;
+    padding: 8px 0px;
+    min-width: 100%;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgb(0 0 0 / 10%) 0px 4px 4px 0px;
+    border: 1px solid rgb(225, 225, 225);
+    transition: visibility 0.25s ease 0s, opacity 0.25s ease 0s;
+    box-sizing: border-box;
+}
+
+.depth2_bx > a {
+  line-height: 16px;
+  font-size: 13px;
+  color: rgb(0, 0, 0);
+  padding: 9px 15px;
+  display: block;
+  white-space: nowrap;
 }
 
 .top_btn {
@@ -181,6 +207,10 @@ ol, ul {
   background: transparent;
 }
 
+.depth2_bx > a:hover {
+    background-color: rgb(246, 246, 246);
+}
+
 .top_btn .bx_user button.i_account {
   min-width: 106px;
   height: 30px;
@@ -200,13 +230,33 @@ ol, ul {
 }
 
 .bot {
-  display: none;
-  text-align: left;
-} 
+  padding: 0px 20px 0px 32px;
+  border-top: 1px solid rgb(225, 225, 225);
+}
 
-/*
-.depth2 {
-    border-top: 1px solid rgb(225, 225, 225);
-} */
+.bot a {
+  display: inline-block;
+  padding: 15px 20px;
+  position: relative;
+  font-size: 15px;
+  line-height: 18px;
+  color: rgb(166, 166, 166);
+  vertical-align: top;
+  transition: background-color 0.15s ease 0s;
+}
 
+.bot a.on {
+  font-weight: bold;
+  color: rgb(68, 68, 68);
+  overflow: hidden;
+}
+
+.bot a.on::after {
+  content: "";
+  position: absolute;
+  border-bottom: 2px solid rgb(0, 0, 0);
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+}
 </style>

@@ -18,11 +18,11 @@ export default {
   data() {
 	  return {
 		  TopHeaderMenuForm : [
-			  {title:'아파트', subTitle:'매매/전월세/신축분양', options:['매매/전·월세', '신축분양', '인구흐름'], click: true},
-			  {title:'빌라, 투룸+', subTitle:'신축분양/매매/전월세', options:['빌라, 투룸 찾기', '찜한 매물', '빌라 내놓기(전월세만)']},
-			  {title:'원룸', subTitle:'전월세', options:['방 찾기', '찜한 매물', '방 내놓기(전월세만)']},
-			  {title:'오피스텔', subTitle:'도시형생활주택/전월세', options:['오피스텔 찾기', '찜한 매물', '오피스텔 내놓기(전/월세만)']},
-			  {title:'창업/사무실', subTitle:'임대/매매', options:['상가・점포', '사무실', '공유오피스', '찜한 매물', '상가/사무실 내놓기']},
+			  {title:'아파트', subTitle:'매매/전월세/신축분양', options:['매매/전·월세', '신축분양', '인구흐름'], click: true, optionsClick:''},
+			  {title:'빌라, 투룸+', subTitle:'신축분양/매매/전월세', options:['빌라, 투룸 찾기', '찜한 매물', '빌라 내놓기(전월세만)'], optionsClick:''},
+			  {title:'원룸', subTitle:'전월세', options:['방 찾기', '찜한 매물', '방 내놓기(전월세만)'], optionsClick:''},
+			  {title:'오피스텔', subTitle:'도시형생활주택/전월세', options:['오피스텔 찾기', '찜한 매물', '오피스텔 내놓기(전/월세만)'], optionsClick:''},
+			  {title:'창업/사무실', subTitle:'임대/매매', options:['상가・점포', '사무실', '공유오피스', '찜한 매물', '상가/사무실 내놓기'], optionsClick:''},
 		  ],
 	  }
   }
@@ -38,6 +38,7 @@ export default {
 }
 
 .top {
+	margin-top: -5px;
 	height: 80px;
 }
 .bot {

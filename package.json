@@ -28,12 +28,13 @@
     "extends": [
       "plugin:vue/vue3-essential",
       "eslint:recommended"
-      
     ],
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": { "no-mixed-spaces-and-tabs": 0}
+    "rules": {
+      "no-mixed-spaces-and-tabs": 0
+    }
   },
   "browserslist": [
     "> 1%",
