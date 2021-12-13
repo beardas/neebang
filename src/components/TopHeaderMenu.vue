@@ -12,7 +12,8 @@
           </a>
 
           <div class="depth2_bx" >
-            <a class=" " v-for="(option, index) in item.options" :key=index>{{option}}</a>
+            <a class="" :class="{on: i==item.optionsClick}" :ref="`depth2[${index}][${i}]`"
+               v-for="(option, i) in item.options" :key=i @click="optionsClick(index, i)">{{option.label}}</a>
           </div>
         </li>
       </ul>
@@ -34,9 +35,9 @@
     </div>
   </div>
 
-  <div class="bot" v-for="(item, index) in this.items" :key="index" v-show="item.click" style="position: relative;">
+  <div class="bot" v-for="(item, index) in this.items" :key="index" v-show="item.click" >
     <a class="" :class="{on: i==item.optionsClick}" v-for="(option, i) in item.options" :key="i" @click="optionsClick(index, i)">
-      <span>{{option}}</span>
+      <span>{{option.label}}</span>
     </a>
   </div>
 </template>
@@ -63,6 +64,7 @@ export default {
       for(let j in this.$props.items) {
         if(j != i) {
           this.$props.items[j].click = false
+          this.$props.items[j].optionsClick = 0
         }
       }
       this.$props.items[i].click = true
@@ -102,8 +104,6 @@ export default {
   float: left;
   position: relative;
   z-index: 1000;
-  top: -18px;
-  left: -25px;
 }
 
 ol, ul {
@@ -244,7 +244,6 @@ ol, ul {
   color: rgb(166, 166, 166);
   vertical-align: top;
   transition: background-color 0.15s ease 0s;
-  left: -850px;
 }
 
 .bot a.on {

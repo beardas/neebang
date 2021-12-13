@@ -29,11 +29,12 @@
 <script>
 export default {
   name: "KakaoMap",
-  props: {},
+  props: ['items',],
   data() {
     return {
       keyword: '서울역',
       map: null,
+      mapMovePoint : [],
       markerPositions1: [
         [33.452278, 126.567803],
         [33.452671, 126.574792],
@@ -172,8 +173,8 @@ export default {
 #map {
   position: relative;
   margin-top: -50px;
-  width: 1200px;
-  height: 800px;
+  width: 100%;
+  height: 100%;
   /* float:left;  */
   /* margin-left: calc(50% - 200px); */
 }

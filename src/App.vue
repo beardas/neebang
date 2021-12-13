@@ -1,7 +1,7 @@
 <template>
 <div id="app">
   <TopHeaderMenu :items="TopHeaderMenuForm"/>
-  <KakaoMap />
+  <KakaoMap :items="TopHeaderMenuForm"/>
 </div>
 </template>
 
@@ -18,14 +18,57 @@ export default {
   data() {
 	  return {
 		  TopHeaderMenuForm : [
-			  {title:'아파트', subTitle:'매매/전월세/신축분양', options:['매매/전·월세', '신축분양', '인구흐름'], click: true, optionsClick:''},
-			  {title:'빌라, 투룸+', subTitle:'신축분양/매매/전월세', options:['빌라, 투룸 찾기', '찜한 매물', '빌라 내놓기(전월세만)'], optionsClick:''},
-			  {title:'원룸', subTitle:'전월세', options:['방 찾기', '찜한 매물', '방 내놓기(전월세만)'], optionsClick:''},
-			  {title:'오피스텔', subTitle:'도시형생활주택/전월세', options:['오피스텔 찾기', '찜한 매물', '오피스텔 내놓기(전/월세만)'], optionsClick:''},
-			  {title:'창업/사무실', subTitle:'임대/매매', options:['상가・점포', '사무실', '공유오피스', '찜한 매물', '상가/사무실 내놓기'], optionsClick:''},
+			  {title:'아파트', subTitle:'매매/전월세/신축분양',
+			   options:[
+				   {label : '매매/전·월세', geoPoint : [37.504540, 127.044752], level : '7'},
+				   {label : '신축분양', geoPoint : [], level : ''},
+				   {label : '인구흐름', geoPoint : [], level : ''}
+				   ], optionsClick:''},
+
+			  {title:'빌라, 투룸+', subTitle:'신축분양/매매/전월세',
+			   options:[
+				   {label : '빌라, 투룸 찾기', geoPoint : [], level : ''},
+				   {label :'찜한 매물'},
+				   {label :'빌라 내놓기(전월세만)'}
+				   ], optionsClick:''},
+
+			  {title:'원룸', subTitle:'전월세',
+			   options:[
+				   {label : '방 찾기', geoPoint : [], level : ''},
+				   {label :'찜한 매물'},
+				   {label :'방 내놓기(전월세만)'}
+				   ], optionsClick:''},
+
+			  {title:'오피스텔', subTitle:'도시형생활주택/전월세',
+			   options:[
+				   {label : '오피스텔 찾기', geoPoint : [], level : ''},
+				   {label : '찜한 매물'},
+				   {label : '오피스텔 내놓기(전/월세만)'}
+				   ], optionsClick:''},
+
+			  {title:'창업/사무실', subTitle:'임대/매매',
+			   options:[
+				   {label : '상가・점포', geoPoint : [], level : ''},
+				   {label : '사무실'},
+				   {label : '공유오피스'},
+				   {label : '찜한 매물'},
+				   {label : '상가/사무실 내놓기'}
+				   ], optionsClick:''},
 		  ],
 	  }
-  }
+  },
+
+  async created() {
+
+  },
+
+  mounted() {
+	  
+  },
+
+  methods : {
+
+  },
 }
 </script>
 
@@ -38,18 +81,18 @@ export default {
 }
 
 .top {
-	margin-top: -5px;
 	height: 80px;
+	padding-right: 20px;
 }
 .bot {
 	height: 50px;
 }
 
 .map {
-	height: 900px;
+	height: 800px;
 }
 
-/* html, body, div, span, applet, object, iframe, 
+html, body, div, span, applet, object, iframe, 
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -68,9 +111,9 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
-} */
+}
 
-/* HTML5 display-role reset for older browsers
+HTML5 display-role reset for older browsers
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
@@ -178,5 +221,5 @@ input[type=text]::-ms-clear{
 	margin-left: -4px;
 	border-width: 4px 4px 0;
 	border-top-color: rgba(51, 51, 51, 0.9);
-} */
+}
 </style>
