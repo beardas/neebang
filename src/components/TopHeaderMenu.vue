@@ -34,7 +34,7 @@
     </div>
   </div>
 
-  <div class="bot" v-for="(item, index) in this.items" :key="index" v-show="item.click" style="text-align:left;">
+  <div class="bot" v-for="(item, index) in this.items" :key="index" v-show="item.click" style="position: relative;">
     <a class="" :class="{on: i==item.optionsClick}" v-for="(option, i) in item.options" :key="i" @click="optionsClick(index, i)">
       <span>{{option}}</span>
     </a>
@@ -232,6 +232,7 @@ ol, ul {
 .bot {
   padding: 0px 20px 0px 32px;
   border-top: 1px solid rgb(225, 225, 225);
+  display: block;
 }
 
 .bot a {
@@ -243,6 +244,7 @@ ol, ul {
   color: rgb(166, 166, 166);
   vertical-align: top;
   transition: background-color 0.15s ease 0s;
+  left: -850px;
 }
 
 .bot a.on {

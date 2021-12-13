@@ -170,9 +170,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 #map {
+  position: relative;
   margin-top: -50px;
   width: 1200px;
   height: 800px;
+  /* float:left;  */
   /* margin-left: calc(50% - 200px); */
 }
 
