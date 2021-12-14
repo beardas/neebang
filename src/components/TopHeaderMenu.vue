@@ -18,7 +18,7 @@
         </li>
       </ul>
     </div>
-    <div class="top_btn">
+    <div class="top_btn"  style="margin-right:20px;">
       <div class="top_btn_menu">
         <div class="bx_user">
           <button type="button" class="i_account">로그인 및 회원가입</button>
@@ -82,7 +82,6 @@ export default {
 <style>
 .top {
 	height: 80px;
-	padding-right: 20px;
   background-color: #ffffff;
   position: fixed;
   z-index: 100;

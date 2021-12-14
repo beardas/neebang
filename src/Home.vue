@@ -1,7 +1,7 @@
 <template>
 <div id="home">
   <TopHeaderMenu :items="TopHeaderMenuForm"/>
-  <HomeMain />
+  <HomeMain :items="TopHeaderMenuForm"/>
 </div>
 </template>
 
@@ -39,7 +39,6 @@ export default {
 <style>
 .top {
 	height: 80px;
-	padding-right: 20px;
 }
 
 .bot {

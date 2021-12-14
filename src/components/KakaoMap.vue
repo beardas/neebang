@@ -1,6 +1,5 @@
 <template>
   <div class="map">
-
     <div class="search-box">
       <div class="search-form">
         <input v-model="keyword"/>
@@ -11,8 +10,9 @@
       </div>
     </div>
 
-    <div id="map" @click="mapClickInfoGeo()">
-    </div>
+    <div id="map" @click="mapClickInfoGeo()"/>
+
+    <FilterBox />
 
     <div class="button-group">
       <button @click="changeSize(0,0)">Hide</button>
@@ -27,8 +27,13 @@
 </template>
 
 <script>
+import FilterBox from '@/components/MapFilterBox.vue'
+
 export default {
   name: "KakaoMap",
+  components: {
+    FilterBox
+    },
   props: ['point', 'level'],
   data() {
     return {

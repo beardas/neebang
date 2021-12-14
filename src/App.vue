@@ -11,20 +11,14 @@ export default {
   components: {
   },
   data() {
-	  return {
-	  }
+	return {
+	}
   },
-
   async created() {
-
   },
-
   mounted() {
-	  
   },
-
   methods : {
-
   },
 }
 </script>
@@ -39,7 +33,6 @@ export default {
 
 .top {
 	height: 80px;
-	padding-right: 20px;
 }
 .bot {
 	height: 50px !important;
