@@ -1,0 +1,38 @@
+[
+    {"title" : "아파트", "value" : "apart", "subTitle" : "매매/전월세/신축분양",
+     "options":[
+         {"label" : "매매/전·월세", "value" : "", "geoPoint" : [37.504540, 127.044752], "level" : "4"},
+         {"label" : "신축분양", "value" : "offer", "geoPoint" : [37.504909, 127.000735], "level" : "4"},
+         {"label" : "인구흐름", "value" : "population", "geoPoint" : [37.546867, 126.980785], "level" : "8"}
+         ], "optionsClick":""},
+
+    {"title":"빌라, 투룸+", "value" : "villa", "subTitle":"신축분양/매매/전월세",
+     "options":[
+         {"label" : "빌라, 투룸 찾기", "geoPoint" : [], "level" : ""},
+         {"label" : "찜한 매물"},
+         {"label" : "빌라 내놓기(전월세만)"}
+         ], "optionsClick" : ""},
+
+    {"title" : "원룸", "value" : "oneroom", "subTitle":"전월세",
+     "options":[
+         {"label" : "방 찾기", "geoPoint" : [], "level" : ""},
+         {"label" :"찜한 매물"},
+         {"label" :"방 내놓기(전월세만)"}
+         ], "optionsClick":""},
+
+    {"title":"오피스텔", "value" : "officetel", "subTitle":"도시형생활주택/전월세",
+     "options":[
+         {"label" : "오피스텔 찾기", "geoPoint" : [], "level" : ""},
+         {"label" : "찜한 매물"},
+         {"label" : "오피스텔 내놓기(전/월세만)"}
+         ], "optionsClick":""},
+
+    {"title":"창업/사무실", "value" : "store", "subTitle":"임대/매매",
+     "options":[
+         {"label" : "상가・점포", "geoPoint" : [], "level" : ""},
+         {"label" : "사무실"},
+         {"label" : "공유오피스"},
+         {"label" : "찜한 매물"},
+         {"label" : "상가/사무실 내놓기"}
+         ], "optionsClick":""}
+]

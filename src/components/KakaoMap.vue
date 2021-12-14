@@ -29,12 +29,11 @@
 <script>
 export default {
   name: "KakaoMap",
-  props: ['items',],
+  props: ['point', 'level'],
   data() {
     return {
       keyword: '서울역',
       map: null,
-      mapMovePoint : [],
       markerPositions1: [
         [33.452278, 126.567803],
         [33.452671, 126.574792],
@@ -65,8 +64,8 @@ export default {
     initMap() {
       const container = document.getElementById("map")
       const options = {
-        center: new kakao.maps.LatLng(37.53412, 127.13898),
-        level: 7,
+        center: new kakao.maps.LatLng(this.point[0], this.point[1]),
+        level: this.level,
       }
 
       this.map = new kakao.maps.Map(container, options)

@@ -1,18 +1,18 @@
 <template>
   <div class="top">
     <div class="logo-wrap">
-      <a><img class="logo" src="../assets/logo_neebang.png" alt="니방" /></a>
+      <a href="/"><img class="logo" src="../assets/logo_neebang.png" alt="니방" /></a>
     </div>
     <div class="gnb">
       <ul id="gnb-container">
         <li v-for="(item, index) in this.items" :key=index class="has_d2" :class="{on: item.click}" @click="listClick(index)">
-          <a>
+          <a :href="`/${item.value}`">
             <span>{{item.title}}</span>
             <span class="small">{{item.subTitle}}</span>
           </a>
 
           <div class="depth2_bx" >
-            <a class="" :class="{on: i==item.optionsClick}" :ref="`depth2[${index}][${i}]`"
+            <a :href="`/${item.value}/${option.value}`" class="" :class="{on: i==item.optionsClick}" :ref="`depth2[${index}][${i}]`"
                v-for="(option, i) in item.options" :key=i @click="optionsClick(index, i)">{{option.label}}</a>
           </div>
         </li>
@@ -36,7 +36,7 @@
   </div>
 
   <div class="bot" v-for="(item, index) in this.items" :key="index" v-show="item.click" >
-    <a class="" :class="{on: i==item.optionsClick}" v-for="(option, i) in item.options" :key="i" @click="optionsClick(index, i)">
+    <a :href="`/${item.value}/${option.value}`" class="" :class="{on: i==item.optionsClick}" v-for="(option, i) in item.options" :key="i" @click="optionsClick(index, i)">
       <span>{{option.label}}</span>
     </a>
   </div>
@@ -80,6 +80,15 @@ export default {
 </script>
 
 <style>
+.top {
+	height: 80px;
+	padding-right: 20px;
+  background-color: #ffffff;
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  border-bottom: 1px solid rgb(225, 225, 225);
+}
 
 .logo-wrap {
   float: left;
@@ -230,8 +239,8 @@ ol, ul {
 }
 
 .bot {
+  padding-top : 80px !important;
   padding: 0px 20px 0px 32px;
-  border-top: 1px solid rgb(225, 225, 225);
   display: block;
 }
 

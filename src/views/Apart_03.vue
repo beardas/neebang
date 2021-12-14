@@ -1,22 +1,36 @@
 <template>
 <div id="app">
-  <router-view/>
+  <TopHeaderMenu :items="TopHeaderMenuForm"/>
+  <KakaoMap :point="MapPoint"
+  			:level="MapLevel"
+  />
 </div>
 </template>
 
 <script>
+import KakaoMap from '@/components/KakaoMap.vue'
+import TopHeaderMenu from '@/components/TopHeaderMenu.vue'
+import TopMenuJson from '@/json/TopHeaderMenuForm.json'
 
 export default {
-  name: 'App',
+  name: 'apart',
   components: {
+    KakaoMap,
+    TopHeaderMenu,
   },
   data() {
-	  return {
-	  }
+	return {
+	  TopHeaderMenuForm : TopMenuJson,
+	  MapPoint : '',
+	  MapLevel : '',
+	}
   },
 
   async created() {
-
+	this.TopHeaderMenuForm[0].click = true
+	this.TopHeaderMenuForm[0].optionsClick = 2
+	this.MapPoint = this.TopHeaderMenuForm[0].options[2].geoPoint
+	this.MapLevel = this.TopHeaderMenuForm[0].options[2].level
   },
 
   mounted() {
@@ -42,14 +56,12 @@ export default {
 	padding-right: 20px;
 }
 .bot {
-	height: 50px !important;
+	height: 50px;
+	display: inherit;
 }
 
 .map {
 	height: 800px;
-}
-.home-main {
-	padding-top : 80px;
 }
 
 html, body, div, span, applet, object, iframe, 
