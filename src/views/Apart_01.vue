@@ -3,6 +3,7 @@
   <TopHeaderMenu :items="TopHeaderMenuForm"/>
   <KakaoMap :point="MapPoint"
   			:level="MapLevel"
+			:search="searchValue"
   />
 </div>
 </template>
@@ -23,6 +24,8 @@ export default {
 	  TopHeaderMenuForm : TopMenuJson,
 	  MapPoint : '',
 	  MapLevel : '',
+	//   searchValue : this.$route.params,
+	  searchValue : '',
 	}
   },
 
@@ -56,7 +59,6 @@ export default {
 	padding-right: 20px;
 }
 .bot {
-	height: 50px;
 	display: inherit;
 }
 

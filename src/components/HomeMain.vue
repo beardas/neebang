@@ -20,9 +20,9 @@
             </div>
             <div class="pages___-lex7c7-13 jsbwAO css-1dbjc4n">
               <div class="css-1dbjc4n r-n2h5ot r-5qlx7g r-1vznrp2 r-uvuy5l r-ah86l4 r-btgi9e r-gxpyh3 r-m1ore8 r-1jtzkro">
-                <input type="text" placeholder="원하시는 지역명, 지하철역을 입력해주세요" autocomplete="off" class="pages__SearchInput-lex7c7-17 iEYDDq">
+                <input v-model="searchValue" type="text" placeholder="원하시는 지역명, 지하철역을 입력해주세요" autocomplete="off" class="pages__SearchInput-lex7c7-17 iEYDDq">
               </div>
-              <div class="pages____-lex7c7-15 eVTGRV css-1dbjc4n r-1loqt21" tabindex="0">
+              <div class="pages____-lex7c7-15 eVTGRV css-1dbjc4n r-1loqt21" tabindex="0" @click="clickSearch">
                 <img src="https://s.zigbang.com/v1/web/main/ic_search.png" alt="찾아보기" class="pages_____-lex7c7-16 kWfCL">
                 <div class="css-1dbjc4n r-633pao" style="background-color: rgba(0, 0, 0, 0); inset: 0px; position: absolute;"></div>
               </div>
@@ -31,7 +31,7 @@
         </div>
       </div>
 <!-- 검색창 -->
-      <!-- <div class="pages__TotalSearchResultView-lex7c7-1 gWfIok css-1dbjc4n" style="left: 402px; top: 390px;">
+      <div v-show="searchValue.length != 0" class="pages__TotalSearchResultView-lex7c7-1 gWfIok css-1dbjc4n" style="left: calc(50% - 287px); top: 390px;">
         <div class="pages__TotalSearchResultItemView-lex7c7-2 hLNvfj css-1dbjc4n">
           <div class="pages__TotalSearchSelectItemWrap-lex7c7-0 klzbCx css-1dbjc4n r-1loqt21" tabindex="0">
             <div class="css-1dbjc4n" style="flex-basis: auto; height: 28px; left: 13px; overflow: hidden; position: absolute; top: 5px; width: 28px; z-index: 0;">
@@ -68,7 +68,7 @@
             <div class="css-1dbjc4n r-633pao" style="background-color: rgba(0, 0, 0, 0); inset: 0px; position: absolute;"></div>
           </div>
         </div>
-      </div> -->
+      </div>
 
       <div class="pages__-lex7c7-18 cnEQli css-1dbjc4n">
         <div class="pages__-lex7c7-19 hBcXuF css-1dbjc4n">
@@ -215,7 +215,8 @@ export default {
   props:['items',],
   data() {
     return {
-      clickIndex : ''
+      clickIndex : '',
+      searchValue : '',
     }
   },
 
@@ -230,7 +231,32 @@ export default {
   methods : {
     clickTitle(i) {
       this.clickIndex = i
-    }
+    },
+    clickSearch() {
+      console.log("검색어 = ",this.searchValue)
+      let param
+      switch(this.clickIndex) {
+        case 0 :
+          param = 'apart'
+          break
+        case 1 :
+          param = 'villa'
+          break
+        case 2 :
+          param = 'oneroom'
+          break
+        case 3 :
+          param = 'officetel'
+          break
+        case 4 :
+          param = 'store'
+          break
+        default:
+          break
+      }
+      
+      this.$router.push(param)
+    },
   }
 
 

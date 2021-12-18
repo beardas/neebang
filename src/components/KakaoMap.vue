@@ -34,10 +34,10 @@ export default {
   components: {
     FilterBox
     },
-  props: ['point', 'level'],
+  props: ['point', 'level', 'search'],
   data() {
     return {
-      keyword: '서울역',
+      keyword: this.search,
       map: null,
       markerPositions1: [
         [33.452278, 126.567803],
@@ -58,13 +58,14 @@ export default {
     };
   },
   async created() {
-    window.kakao && window.kakao.maps ? this.initMap() : this.addScript()
     
   },
 
   mounted() {
-      
+    window.kakao && window.kakao.maps ? this.initMap() : this.addScript()
+    console.log(this.search)
   },
+
   methods: {
     initMap() {
       const container = document.getElementById("map")
@@ -74,6 +75,10 @@ export default {
       }
 
       this.map = new kakao.maps.Map(container, options)
+      if(this.keyword !== undefined) {
+        this.mapKeywordSearch()
+      }
+
 
     },
 

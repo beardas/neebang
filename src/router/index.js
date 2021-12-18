@@ -10,6 +10,7 @@ const routes = [
   {
     path: '/apart',
     name: '아파트 매매',
+    props : true,
     component: () => import('@/views/Apart_01')
   },
   {

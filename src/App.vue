@@ -34,12 +34,10 @@ export default {
 .top {
 	height: 80px;
 }
-.bot {
-	height: 50px !important;
-}
 
 .map {
 	height: 800px;
+	overflow: hidden;
 }
 .home-main {
 	padding-top : 80px;

@@ -56,7 +56,6 @@ export default {
 	padding-right: 20px;
 }
 .bot {
-	height: 50px;
 	display: inherit;
 }
 

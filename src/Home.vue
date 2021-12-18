@@ -13,8 +13,8 @@ import TopMenuJson from '@/json/TopHeaderMenuForm.json'
 export default {
   name: 'Home',
   components: {
-	TopHeaderMenu,
-	HomeMain,
+    TopHeaderMenu,
+    HomeMain,
   },
   data() {
 	return {
