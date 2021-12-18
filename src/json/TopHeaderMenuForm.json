@@ -8,9 +8,9 @@
 
     {"title":"빌라, 투룸+", "value" : "villa", "subTitle":"신축분양/매매/전월세",
      "options":[
-         {"label" : "빌라, 투룸 찾기", "geoPoint" : [], "level" : ""},
-         {"label" : "찜한 매물"},
-         {"label" : "빌라 내놓기(전월세만)"}
+         {"label" : "빌라, 투룸 찾기", "value" : "", "geoPoint" : [37.535939, 127.009594], "level" : "4"},
+         {"label" : "찜한 매물", "value" : "picked"},
+         {"label" : "빌라 내놓기(전월세만)", "value" : "takeout"}
          ], "optionsClick" : ""},
 
     {"title" : "원룸", "value" : "oneroom", "subTitle":"전월세",
