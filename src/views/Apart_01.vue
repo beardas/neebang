@@ -24,8 +24,7 @@ export default {
 	  TopHeaderMenuForm : TopMenuJson,
 	  MapPoint : '',
 	  MapLevel : '',
-	//   searchValue : this.$route.params,
-	  searchValue : '',
+	  searchValue : this.$route.params,
 	}
   },
 

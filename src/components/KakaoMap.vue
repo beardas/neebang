@@ -37,7 +37,7 @@ export default {
   props: ['point', 'level', 'search'],
   data() {
     return {
-      keyword: this.search,
+      keyword: '',
       map: null,
       markerPositions1: [
         [33.452278, 126.567803],
@@ -58,7 +58,9 @@ export default {
     };
   },
   async created() {
-    
+    if(this.search !== undefined) {
+      this.keyword = this.search.search
+    }
   },
 
   mounted() {

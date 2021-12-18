@@ -9,18 +9,22 @@ const routes = [
   },
   {
     path: '/apart',
-    name: '아파트 매매',
-    props : true,
-    component: () => import('@/views/Apart_01')
+    name: 'apart',
+    component: () => import('@/views/Apart_01'),
+    children: [
+      {
+        path: ':search',
+        props: true,
+        component: () => import('@/views/Apart_01')
+      }
+    ]
   },
   {
     path: '/apart/offer',
-    name: '아파트 신축',
     component: () => import('@/views/Apart_02')
   },
   {
     path: '/apart/population',
-    name: '아파트 인구흐름',
     component: () => import('@/views/Apart_03')
   },
 ];

@@ -233,7 +233,7 @@ export default {
       this.clickIndex = i
     },
     clickSearch() {
-      console.log("검색어 = ",this.searchValue)
+      console.log(`검색어 = `,this.searchValue) 
       let param
       switch(this.clickIndex) {
         case 0 :
@@ -254,8 +254,9 @@ export default {
         default:
           break
       }
-      
-      this.$router.push(param)
+      if(this.searchValue.length != 0) {
+        this.$router.push({ name: `${param}`, params: { search: this.searchValue }})
+      }
     },
   }
 
