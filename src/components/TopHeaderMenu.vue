@@ -1,19 +1,19 @@
 <template>
   <div class="top">
     <div class="logo-wrap">
-      <a href="/"><img class="logo" src="../assets/logo_neebang.png" alt="니방" /></a>
+      <router-link to="/" @click="homeClick"><img class="logo" src="../assets/logo_neebang.png" alt="니방" /></router-link>
     </div>
     <div class="gnb">
       <ul id="gnb-container">
         <li v-for="(item, index) in this.items" :key=index class="has_d2" :class="{on: item.click}" @click="listClick(index)">
-          <a :href="`/${item.value}`">
+          <router-link :to="`/${item.value}`">
             <span>{{item.title}}</span>
             <span class="small">{{item.subTitle}}</span>
-          </a>
+          </router-link>
 
           <div class="depth2_bx" >
-            <a :href="`/${item.value}/${option.value}`" class="" :class="{on: i==item.optionsClick}" :ref="`depth2[${index}][${i}]`"
-               v-for="(option, i) in item.options" :key=i @click="optionsClick(index, i)">{{option.label}}</a>
+            <router-link :to="option.value !== undefined ? `/${item.value}/${option.value}` : ''" class="" :class="{on: i==item.optionsClick, coming_soon: option.value === undefined}" :ref="`depth2[${index}][${i}]`"
+               v-for="(option, i) in item.options" :key=i @click="optionsClick(index, i)">{{option.label}}</router-link>
           </div>
         </li>
       </ul>
@@ -34,11 +34,10 @@
       </div>
     </div>
   </div>
-
   <div class="bot" v-for="(item, index) in this.items" :key="index" v-show="item.click" >
-    <a :href="`/${item.value}/${option.value}`" class="" :class="{on: i==item.optionsClick}" v-for="(option, i) in item.options" :key="i" @click="optionsClick(index, i)">
+    <router-link :to="option.value !== undefined ? `/${item.value}/${option.value}` : ''" class="" :class="{on: i==item.optionsClick, coming_soon: option.value === undefined}" v-for="(option, i) in item.options" :key="i" @click="optionsClick(index, i)">
       <span>{{option.label}}</span>
-    </a>
+    </router-link>
   </div>
 </template>
 
@@ -47,6 +46,7 @@ export default {
   props:['items',],
   data() {
     return {
+      PreOptionIndex : '',
     }
   },
 
@@ -71,9 +71,18 @@ export default {
     },
 
     optionsClick(itemIndex, optionIndex) {
-      this.$props.items[itemIndex].optionsClick = optionIndex
+      if(this.$props.items[itemIndex].options[optionIndex].value !== undefined) {
+        this.$props.items[itemIndex].optionsClick = optionIndex
+        return optionIndex
+      }
     },
-  }
+
+    homeClick() {
+      for(let i in this.$props.items) {
+        this.$props.items[i].click = false
+      }
+    }
+  },
 
 
 };
@@ -219,6 +228,25 @@ ol, ul {
     background-color: rgb(246, 246, 246);
 }
 
+.depth2_bx > a.coming_soon:hover {
+    color: transparent;
+}
+
+.depth2_bx > a.coming_soon {
+    cursor: not-allowed !important;
+}
+
+.depth2_bx > a.coming_soon:hover::before {
+  display: block;
+}
+
+.depth2_bx > a.coming_soon::before {
+  display: none;
+  content: "Coming Soon!";
+  position: absolute;
+  color: #000;
+}
+
 .top_btn .bx_user button.i_account {
   min-width: 106px;
   height: 30px;
@@ -267,5 +295,10 @@ ol, ul {
   left: 0px;
   right: 0px;
   bottom: 0px;
+}
+
+.bot a.coming_soon {
+    color: rgb(225, 225, 225);
+    cursor: not-allowed !important;
 }
 </style>

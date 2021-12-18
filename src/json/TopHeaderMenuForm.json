@@ -15,24 +15,24 @@
 
     {"title" : "원룸", "value" : "oneroom", "subTitle":"전월세",
      "options":[
-         {"label" : "방 찾기", "geoPoint" : [], "level" : ""},
-         {"label" :"찜한 매물"},
-         {"label" :"방 내놓기(전월세만)"}
+         {"label" : "방 찾기", "value" : "", "geoPoint" : [37.484282, 126.929718], "level" : "3"},
+         {"label" :"찜한 매물", "value" : "picked" },
+         {"label" :"방 내놓기(전월세만)", "value" : "takeout"}
          ], "optionsClick":""},
 
     {"title":"오피스텔", "value" : "officetel", "subTitle":"도시형생활주택/전월세",
      "options":[
-         {"label" : "오피스텔 찾기", "geoPoint" : [], "level" : ""},
-         {"label" : "찜한 매물"},
-         {"label" : "오피스텔 내놓기(전/월세만)"}
+         {"label" : "오피스텔 찾기", "value" : "", "geoPoint" : [37.568720, 127.021003], "level" : "4"},
+         {"label" : "찜한 매물", "value" : "picked"},
+         {"label" : "오피스텔 내놓기(전/월세만)", "value" : "takeout"}
          ], "optionsClick":""},
 
     {"title":"창업/사무실", "value" : "store", "subTitle":"임대/매매",
      "options":[
-         {"label" : "상가・점포", "geoPoint" : [], "level" : ""},
+         {"label" : "상가・점포", "value" : "", "geoPoint" : [37.515080, 126.983033], "level" : "7"},
          {"label" : "사무실"},
          {"label" : "공유오피스"},
-         {"label" : "찜한 매물"},
-         {"label" : "상가/사무실 내놓기"}
+         {"label" : "찜한 매물", "value" : "picked"},
+         {"label" : "상가/사무실 내놓기", "value" : "takeout"}
          ], "optionsClick":""}
 ]
