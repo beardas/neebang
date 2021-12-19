@@ -12,11 +12,9 @@
 
     <div id="map" @click="mapClickInfoGeo()"/>
 
-    <FilterBox />
+    <!-- <FilterBox /> -->
 
     <div class="button-group">
-      <button @click="changeSize(0,0)">Hide</button>
-      <button @click="changeSize(1200, 800)">show</button>
       <button @click="displayMarker(markerPositions1)">marker set 1</button>
       <button @click="displayMarker(markerPositions2)">marker set 2</button>
       <button @click="displayMarker([])">marker set 3 (empty)</button>
@@ -27,12 +25,13 @@
 </template>
 
 <script>
-import FilterBox from '@/components/MapFilterBox.vue'
+// import FilterBox from '@/components/MapFilterBox.vue'
+import mapClusterer from '@/json/mapClusterer.json'
 
 export default {
   name: "KakaoMap",
   components: {
-    FilterBox
+    // FilterBox
     },
   props: ['point', 'level', 'search'],
   data() {
@@ -53,6 +52,7 @@ export default {
         [37.49754540521486, 127.02546694890695],
         [37.49646391248451, 127.02675574250912],
       ],
+      mapInClusterer: mapClusterer,
       markers: [],
       infowindow: null,
     };
@@ -75,12 +75,15 @@ export default {
         level: this.level,
       }
 
-      this.map = new kakao.maps.Map(container, options)
+      let map = new kakao.maps.Map(container, options)
+
+      this.MarkerClusterer(map)
+
+      this.map = map
+
       if(this.keyword !== undefined) {
         this.mapKeywordSearch()
       }
-
-
     },
 
     mapKeywordSearch() {
@@ -168,6 +171,28 @@ export default {
       this.map.setCenter(iwPosition);
     },
 
+    MarkerClusterer(map) {
+      let clusterer = new kakao.maps.MarkerClusterer({
+         map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
+         averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
+         minLevel: 5 // 클러스터 할 최소 지도 레벨 
+      });
+
+      if(this.markers.length == 0) {
+        this.mapInClusterer.positions.forEach(element => {
+          let coords = new kakao.maps.LatLng(element.lat, element.lng)
+          let marker = new kakao.maps.Marker({
+            position : coords,
+            clickable : true,
+            map : map
+          });
+          this.markers.push(marker);
+        })
+        
+        clusterer.addMarkers(this.markers);
+      }
+    },
+
     mapClickInfoGeo () {
       kakao.maps.event.addListener(this.map, 'click', (mouseEvent) => {
         console.log(`지도에서 클릭한 위치의 좌표는 ${mouseEvent.latLng.toString()} 입니다.`);
@@ -191,6 +216,7 @@ export default {
 
 .button-group {
   margin: 10px 0px;
+  position: absolute
 }
 
 .search-box {
