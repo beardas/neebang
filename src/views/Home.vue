@@ -23,7 +23,10 @@ export default {
   },
 
   async created() {
-
+    const get = await this.$Server.get('/mainMenu')
+    console.log(`get 데이터`, get)
+    const post = await this.$Server.post('/subMenu1')
+    console.log(`post 데이터`, post)
   },
 
   mounted() {
